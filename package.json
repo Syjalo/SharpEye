@@ -1,0 +1,24 @@
+{
+  "name": "SharpEye",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syjalo/SharpEye.git"
+  },
+  "keywords": [],
+  "author": "Syjalo",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Syjalo/SharpEye/issues"
+  },
+  "homepage": "https://github.com/Syjalo/SharpEye#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}
