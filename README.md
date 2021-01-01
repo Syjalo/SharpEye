@@ -4,4 +4,5 @@ It's my Discord Bot that I'm creating to explore [discord.js](https://github.com
 ## Tasks
 - [x] Made a help command
 - [x] Made a kick command
-- [ ] Made a ban command
+- [x] Made a ban command
+- [ ] Made a timer for a ban command

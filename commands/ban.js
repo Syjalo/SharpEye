@@ -1,6 +1,6 @@
 module.exports = {
-	name: 'kick',
-	description: 'Tag a member and kick them.',
+	name: 'ban',
+	description: 'Tag a member and ban them.',
     guildOnly: true,
     cooldown: 5,
 	execute(message) {
@@ -12,14 +12,14 @@ module.exports = {
         const pingExecuter = `<@${member.id}>`;
         const pingTarget = `<@${mentions.users.first().id}>`
 
-        if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('KICK_MEMBERS')) {
+        if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('BAN_MEMBERS')) {
             const target = mentions.users.first();
             if (target) {
                 const targetMember = message.guild.members.cache.get(target.id)
-                targetMember.kick();
-                message.channel.send(`${pingTarget} has been kicked`);
+                targetMember.ban();
+                message.channel.send(`${pingTarget} has been banned`);
             } else {
-                message.channel.send(`${pingExecuter}, please specify someone to kick.`);
+                message.channel.send(`${pingExecuter}, please specify someone to ban.`);
             }
         } else {
         message.channel.send(`${pingExecuter}, you don't have permission to use this command.`);
