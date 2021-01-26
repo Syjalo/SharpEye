@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 
 const { token } = require('../secret/config.json')
-const loadCommands = require('./commands/load-commands')
+const commandsHandler = require('./commands/commands-handler')
 const loadFeatures = require('./features/load-features')
 
 
@@ -10,7 +10,7 @@ const loadFeatures = require('./features/load-features')
 client.on('ready', async () => {
     console.log('The client is ready!')
 
-    loadCommands(client)
+    commandsHandler(client)
     console.log('Commands registered!')
 
     // loadFeatures(client)
