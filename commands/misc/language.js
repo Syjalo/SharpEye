@@ -1,4 +1,4 @@
-const { updateLanguageCode } = require('../../loaders/languagesBase')
+const { updateLanguageCode } = require('../../loaders/languages-base')
 
 module.exports = {
     name: 'language',

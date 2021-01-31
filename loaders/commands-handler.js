@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 
 const functions = require('../utils/functions')
-const { getLanguageCode } = require('../loaders/languagesBase')
+const { getLanguageCode } = require('./languages-base')
 
 const commands = new Discord.Collection
 const { prefix, colorRed, colorOrange, colorGreen } = require('../config.json')

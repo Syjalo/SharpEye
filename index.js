@@ -3,7 +3,7 @@ const client = new Discord.Client()
 
 
 const { token } = require('../secret/config.json')
-const { loadLanguages } = require('./loaders/languagesBase')
+const { loadLanguages } = require('./loaders/languages-base')
 const commandsHandler = require('./loaders/commands-handler')
 const loadFeatures = require('./loaders/load-features')
 
