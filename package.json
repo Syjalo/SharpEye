@@ -4,11 +4,9 @@
   "description": "It's my Discord Bot that I'm creating to explore [discord.js](https://github.com/discordjs/discord.js). For exploreing, I use [Discors.js Guide](https://discordjs.guide/) and [Guide](https://github.com/AlexzanderFlores/Worn-Off-Keys-Discord-Js) by [Worn Off Keys](https://www.youtube.com/channel/UChPrh75CmPP9Ig6jISPnfNA).",
   "main": "index.js",
   "dependencies": {
-    "commando-provider-mongo": "^2.0.2",
     "discord.js": "^12.5.1",
     "mongodb": "^3.6.3",
-    "mongoose": "^5.11.10",
-    "ms": "^2.1.3"
+    "mongoose": "^5.11.10"
   },
   "devDependencies": {},
   "scripts": {
@@ -20,7 +18,7 @@
   },
   "keywords": [],
   "author": "Syjalo",
-  "license": "GPL-3.0",
+  "license": "MIT License",
   "bugs": {
     "url": "https://github.com/Syjalo/SharpEye/issues"
   },

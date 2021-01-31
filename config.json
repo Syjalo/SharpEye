@@ -4,5 +4,10 @@
     "colorRed": "#ff0000",
     "colorOrange": "#ffa500",
     "colorYellow": "#ffff00",
-    "colorGreen": "#00ff00"
+    "colorGreen": "#00ff00",
+
+    "langsdb": {
+        "en": {"name": "English"},
+        "ru": {"name": "Russian"}
+    }
 }
