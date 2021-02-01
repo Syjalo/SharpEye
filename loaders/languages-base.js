@@ -24,7 +24,7 @@ async function loadLanguages() {
 }
 
 function getLanguageCode(message) {
-    if(languages.has('current-' + message.guild.id + '-' + message.author.id)) return languages.get('current-' + guildId + '-' + memberId)
+    if(languages.has('current-' + message.guild.id + '-' + message.author.id)) return languages.get('current-' + message.guild.id + '-' + message.author.id)
     if(languages.has('all-' + message.author.id)) return languages.get('all-' + message.author.id)
     if(languages.has('server-' + message.guild.id)) return languages.get('server-' + message.guild.id)
     return 'en'
