@@ -1,6 +1,6 @@
 {
     "global": {
-        "executedBy": "Выполнено %%member%%",
+        "executedBy": "Выполнено для %%member%%",
         "timeOut": "Время работы этого меню истекло. Выполните команду `%%command%%`, если вы хотите использовать ее снова.",
 
         "ADMINISTRATOR": "Administrator",
@@ -33,7 +33,10 @@
         "DEAFEN_MEMBERS": "Deafen members",
         "MOVE_MEMBERS": "Move members",
         "USE_VAD": "Use voice activity",
-        "PRIORITY_SPEAKER": "Priority Speaker"
+        "PRIORITY_SPEAKER": "Priority Speaker",
+
+        "en": "Англиский",
+        "ru": "Русский"
     },
     "functions": {
         "requiredBotPerms": {
@@ -50,6 +53,10 @@
     "help": {
         "infractions": {
             "usage": "infractions <упоменание> <номер страницы>"
+        },
+        "language": {
+            "usage": "language [set] [current | all | server] <код языка>",
+            "usageInDM": "language [set] [all] <код языка>"
         }
     },
     "infractions": {
@@ -64,6 +71,19 @@
         "noInfractions": {
             "title": "Нарушений нет",
             "description": "%%member%% не имеет никаких нарушений."
+        }
+    },
+    "language": {
+        "set": {
+            "current": {
+                "dm": {
+                    "title": "Вы не можете использовать эту команду в ЛС!",
+                    "description": "Пожалуйста, воспользуйтесь `%%command%%`."
+                },
+                "successfully": {
+                    "title": "Ваш язык на этом сервере был обновлен на %%langName%%."
+                }
+            }
         }
     },
     "ping": {

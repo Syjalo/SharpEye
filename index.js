@@ -2,7 +2,6 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 
 
-const { token } = require('../secret/config.json')
 const { loadLanguages } = require('./loaders/languages-base')
 const commandsHandler = require('./loaders/commands-handler')
 const loadFeatures = require('./loaders/load-features')
@@ -23,4 +22,4 @@ client.on('ready', async () => {
 
 })
 
-client.login(token)
+client.login(process.env.token)

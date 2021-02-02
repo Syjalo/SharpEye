@@ -1,8 +1,14 @@
 {
     "global": {
-        "executedBy": "Executed by %%member%%",
+        "executedBy": "Executed for %%member%%",
         "timeOut": "This menu has timed out. Execute `%%command%%`, if you want to use it again.",
-
+        "useInDmNotAllowed": {
+            "title": "You can't use this command in DM!",
+            "description": "Please use `%%command%%`."
+        },
+        "noPermToUseCommand": {
+            "title": "You doesn't have `%%perm%%` permission to use this command!"
+        },
         "ADMINISTRATOR": "Administrator",
         "VIEW_AUDIT_LOG": "View audit log",
         "VIEW_GUILD_INSIGHTS": "View Server Insights",
@@ -33,7 +39,10 @@
         "DEAFEN_MEMBERS": "Deafen members",
         "MOVE_MEMBERS": "Move members",
         "USE_VAD": "Use voice activity",
-        "PRIORITY_SPEAKER": "Priority Speaker"
+        "PRIORITY_SPEAKER": "Priority Speaker",
+
+        "en": "English",
+        "ru": "Russian"
     },
     "functions": {
         "requiredBotPerms": {
@@ -50,6 +59,10 @@
     "help": {
         "infractions": {
             "usage": "infractions <mention> <page num>"
+        },
+        "language": {
+            "usage": "language [set] [current | all | server] <language code>",
+            "usageInDm": "language [set] [all] <language code>"
         }
     },
     "infractions": {
@@ -64,6 +77,23 @@
         "noInfractions": {
             "title": "No infractions",
             "description": "%%member%% doesn't have any infractions."
+        }
+    },
+    "language": {
+        "unknownLangCode": {
+            "title": "Unknown language code",
+            "description": "`%%langCode%%` couldn't be found!\nAllowed codes: `%%langCodes%%`."
+        },
+        "set": {
+            "current": {
+                "title": "Your language on this server has been successfully updated to %%langName%%."
+            },
+            "all": {
+                "title": "Your language on all servers has been successfully updated to %%langName%%."
+            },
+            "server": {
+                "title": "Server language has been successfully updated to %%langName%%."
+            }
         }
     },
     "ping": {
