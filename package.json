@@ -1,12 +1,16 @@
 {
-  "name": "SharpEye",
+  "name": "sharpeye",
   "version": "1.0.0",
   "description": "It's my Discord Bot that I'm creating to explore [discord.js](https://github.com/discordjs/discord.js). For exploreing, I use [Discors.js Guide](https://discordjs.guide/) and [Guide](https://github.com/AlexzanderFlores/Worn-Off-Keys-Discord-Js) by [Worn Off Keys](https://www.youtube.com/channel/UChPrh75CmPP9Ig6jISPnfNA).",
   "main": "index.js",
   "dependencies": {
+    "canvas": "^2.6.1",
     "discord.js": "^12.5.1",
-    "mongodb": "^3.6.3",
-    "mongoose": "^5.11.10"
+    "dotenv": "^8.2.0",
+    "module-alias": "^2.2.2",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.16",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -18,9 +22,19 @@
   },
   "keywords": [],
   "author": "Syjalo",
-  "license": "MIT License",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Syjalo/SharpEye/issues"
   },
-  "homepage": "https://github.com/Syjalo/SharpEye#readme"
+  "homepage": "https://github.com/Syjalo/SharpEye#readme",
+  "_moduleAliases": {
+    "@root": ".",
+    "@commands": "./commands",
+    "@events": "./events",
+    "@games": "./games",
+    "@libraries": "./libraries",
+    "@res": "./res",
+    "@schemas": "./schemas",
+    "@secret": "../secret"
+  }
 }

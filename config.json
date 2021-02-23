@@ -1,13 +1,14 @@
 {
     "prefix": "-",
 
+    "botOwnerId": "406028548034396160",
+    
     "colorRed": "#ff0000",
-    "colorOrange": "#ffa500",
+    "colorOrange": "#ffa000",
     "colorYellow": "#ffff00",
     "colorGreen": "#00ff00",
 
     "langsdb": {
-        "en": {"name": "English"},
-        "ru": {"name": "Russian"}
+        "en": { "name": "English" }
     }
 }

@@ -1,12 +1,8 @@
 # SharpEye
-It's my Discord Bot that I'm creating to explore [discord.js](https://github.com/discordjs/discord.js). For exploreing, I use [Discors.js Guide](https://discordjs.guide/) and [Guide](https://github.com/AlexzanderFlores/Worn-Off-Keys-Discord-Js) by [Worn Off Keys](https://www.youtube.com/channel/UChPrh75CmPP9Ig6jISPnfNA).
+SharpEye is an open-source Discord Bot; based on [Guide](https://github.com/AlexzanderFlores/Worn-Off-Keys-Discord-Js) by [Worn Off Keys](https://www.youtube.com/channel/UChPrh75CmPP9Ig6jISPnfNA)
 
-## Tasks
-- [ ] Made a help command
-- [ ] Made a kick command
-- [ ] Made a ban command
-- [ ] Made a mute command
-- [ ] Made a warn command
-- [ ] Made a infractions command
-- [ ] Made a profile command
-- [ ] Made a whois command
+## License
+- SharpEye: (MIT License)[https://github.com/Syjalo/SharpEye/blob/main/LICENSE]
+
+## Credits and Third party licenses
+- (Worn-Off-Keys-Discord-Js)[https://github.com/AlexzanderFlores/Worn-Off-Keys-Discord-Js]: Not licensed

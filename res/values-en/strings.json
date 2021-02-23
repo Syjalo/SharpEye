@@ -1,120 +1,93 @@
 {
     "global": {
-        "executedBy": "Executed for %%member%%",
-        "timeOut": "This menu has timed out. Execute `%%command%%`, if you want to use it again.",
-        "useInDmNotAllowed": {
-            "title": "You can't use this command in DM!",
-            "description": "Please use `%%command%%`."
-        },
-        "noPermToUseCommand": {
-            "title": "You doesn't have `%%perm%%` permission to use this command!"
-        },
-        "ADMINISTRATOR": "Administrator",
-        "VIEW_AUDIT_LOG": "View audit log",
+        "executedBy": "Executed by %%member%%",
+        "comma": ", ",
+        "and": ", and ",
+
+        "VIEW_CHANNEL": "View Channels",
+        "MANAGE_CHANNELS": "Manage Channels",
+        "MANAGE_ROLES": "Manage Roles",
+        "MANAGE_EMOJIS": "Manage Emojis",
+        "VIEW_AUDIT_LOG": "View Audit Log",
         "VIEW_GUILD_INSIGHTS": "View Server Insights",
-        "MANAGE_GUILD": "Manage server",
-        "MANAGE_ROLES": "Manage roles",
-        "MANAGE_CHANNELS": "Manage channels",
-        "KICK_MEMBERS": "Kick members",
-        "BAN_MEMBERS": "Ban members",
-        "CREATE_INSTANT_INVITE": "Create instant invite",
-        "CHANGE_NICKNAME": "Change nickname",
-        "MANAGE_NICKNAMES": "Manage nicknames",
-        "MANAGE_EMOJIS": "Manage emojis",
-        "MANAGE_WEBHOOKS": "Manage webhooks",
-        "VIEW_CHANNEL": "Read text channels and see voice channels",
-        "SEND_MESSAGES": "Send messages",
-        "SEND_TTS_MESSAGES": "Send TTS messages",
-        "MANAGE_MESSAGES": "Manage messages",
-        "EMBED_LINKS": "Embed links",
-        "ATTACH_FILES": "Attach files",
-        "READ_MESSAGE_HISTORY": "Read message history",
-        "MENTION_EVERYONE": "Mention everyone",
-        "USE_EXTERNAL_EMOJIS": "Use external emojis",
-        "ADD_REACTIONS": "Add reactions",
+        "MANAGE_WEBHOOKS": "Manage Webhooks",
+        "MANAGE_GUILD": "Manage Server",
+        "CREATE_INSTANT_INVITE": "Create Invite",
+        "CHANGE_NICKNAME": "Change Nickname",
+        "MANAGE_NICKNAMES": "Manage Nicknames",
+        "KICK_MEMBERS": "Kick Members",
+        "BAN_MEMBERS": "Ban Members",
+        "SEND_MESSAGES": "Send Messages",
+        "EMBED_LINKS": "Embed Links",
+        "ATTACH_FILES": "Attach Files",
+        "ADD_REACTIONS": "Add Reactions",
+        "USE_EXTERNAL_EMOJIS": "Use External Emojis",
+        "MENTION_EVERYONE": "Mention @everyone, @here, and All Roles",
+        "MANAGE_MESSAGES": "Manage Messages",
+        "READ_MESSAGE_HISTORY": "Read Message Mistory",
+        "SEND_TTS_MESSAGES": "Send Text-to-Speech Messages",
         "CONNECT": "Connect",
         "SPEAK": "Speak",
         "STREAM": "Video",
-        "MUTE_MEMBERS": "Mute members",
-        "DEAFEN_MEMBERS": "Deafen members",
-        "MOVE_MEMBERS": "Move members",
-        "USE_VAD": "Use voice activity",
+        "USE_VAD": "Use Voice Activity",
         "PRIORITY_SPEAKER": "Priority Speaker",
-
-        "en": "English",
-        "ru": "Russian"
+        "MUTE_MEMBERS": "Mute Members",
+        "DEAFEN_MEMBERS": "Deafen Members",
+        "MOVE_MEMBERS": "Move Members",
+        "ADMINISTRATOR": "Administrator"
     },
-    "functions": {
-        "requiredBotPerms": {
-            "title": {
-                "one": "Bot doesn't have some permission",
-                "many": "Bot doesn't have some permissions"
+    "command": {
+        "help": {
+            "misc": {
+                "ping": {
+                    "usage": "ping"
+                },
+                "try": {
+                    "usage": "try <action>"
+                }
+            }
+        },
+        "ping": {
+            "moduleName": "Ping",
+            "defining": "Defining%%loading%%",
+            "title": "Pong!",
+            "description": "Ping is %%ping%%ms."
+        },
+        "try": {
+            "moduleName": "Try",
+            "result": [
+                "Successful",
+                "Unsuccessful"
+            ]
+        }
+    },
+    "event": {
+        "message": {
+            "requiredBotPerms": {
+                "title": {
+                    "one": "The bot doesn't have some permission",
+                    "many": "The bot doesn't have some permissions"
+                },
+                "description": {
+                    "one": "Required permission: `%%perm%%`",
+                    "many": "Required permissions: `%%perms%%`"
+                }
             },
-            "description": {
-                "one": "Required permission: `%%perm%%`",
-                "many": "Required permissions: `%%perms%%`"
+            "argsLength": {
+                "title": "Incorrect syntax",
+                "description": "Please use `%%command%%`."
+            },
+            "cooldown": {
+                "title": "Cooldown exist",
+                "description": "Please wait %%time%% more second(s) before execute the `%%command%%` command again."
             }
         }
     },
-    "help": {
-        "infractions": {
-            "usage": "infractions <mention> <page num>"
-        },
-        "language": {
-            "usage": "language [set] [current | all | server] <language code>",
-            "usageInDm": "language [set] [all] <language code>"
-        }
-    },
-    "infractions": {
-        "infractionsList": {
-           "title": "Infractions",
-           "description": "Infractions list for %%member%%.",
-           "fieldTitle": "Case %%num%%",
-           "warnFieldDescription": "Warning  at %%time%% by %%moderator%%\nReason: `%%reason%%`.",
-           "pageNum": "Page %%num%%/%%total%%",
-           "reasonNotSpecified": "Not specified"
-        },
-        "noInfractions": {
-            "title": "No infractions",
-            "description": "%%member%% doesn't have any infractions."
-        }
-    },
-    "language": {
-        "unknownLangCode": {
-            "title": "Unknown language code",
-            "description": "`%%langCode%%` couldn't be found!\nAllowed codes: `%%langCodes%%`."
-        },
-        "set": {
-            "current": {
-                "title": "Your language on this server has been successfully updated to %%langName%%."
-            },
-            "all": {
-                "title": "Your language on all servers has been successfully updated to %%langName%%."
-            },
-            "server": {
-                "title": "Server language has been successfully updated to %%langName%%."
-            }
-        }
-    },
-    "ping": {
-        "determination": "Pinging%%loading%%",
-        "title": "Pong!",
-        "description": "Ping is %%ping%%ms."
-    },
-    "warn": {
-        "noSpecifiedMember": {
-            "title": "No specified member",
-            "description": "To continue, please specify someone."
-        },
-        "warnedSuccessfully": {
-            "title": "Warned successfully!",
-            "description": "%%member%% has successfully been warned by %%moderator%%\nReason: `%%reason%%`."
-        }
-    },
-    "errors": {
-        "runningCommand": {
-            "title": "An error occurred while running the command!",
-            "description": "You shouldn't ever receive an error like this.\nPlease contact %%developer%%."
+    "error": {
+        "moduleName": "Error",
+        "systemError": "An error occurred while running the command\nI sent this error to the Developer. He'll fix it soon.",
+        "customError": {
+            "ApiError": "Something went wrong when connecting to the API!"
         }
     }
 }
