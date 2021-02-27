@@ -1,20 +1,21 @@
 const Discord = require('discord.js')
+
 const { colorRed, colorOrange, colorGreen } = require('@root/config.json')
 
 module.exports = {
 	name: 'ping',
 	group: 'misc',
 	allowingInDm: true,
-    async execute(message, strings) {
-		const executedBy = strings.global.executedBy.replace('%%member%%', message.author.tag)
+    async execute(message, getString) {
+		const executedBy = getString(message, 'global', 'executedBy').replace('%%member%%', message.author.tag)
 
         let embedPing = new Discord.MessageEmbed()
-        .setTitle(strings.command.ping.defining.replace('%%loading%%', '.'))
+        .setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '.'))
         .setColor(colorOrange)
         const pingMsg = await message.channel.send(embedPing)
-        embedPing.setTitle(strings.command.ping.defining.replace('%%loading%%', '..'))
+        embedPing.setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '..'))
         await pingMsg.edit(embedPing)
-        embedPing.setTitle(strings.command.ping.defining.replace('%%loading%%', '...'))
+        embedPing.setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '...'))
         await pingMsg.edit(embedPing)
 		let ping = Math.ceil((pingMsg.editedTimestamp - message.createdTimestamp) / 3)
 		let color
@@ -28,11 +29,11 @@ module.exports = {
 			color = colorRed
         }
 		embedPing
-		.setAuthor(strings.command.ping.moduleName)
-		.setTitle(strings.command.ping.title)
-		.setDescription(strings.command.ping.description.replace('%%ping%%', ping))
-		.setFooter(executedBy, message.author.displayAvatarURL())
+		.setTitle(getString(message, 'ping', 'title'))
+		.setDescription(getString(message, 'ping', 'description').replace('%%ping%%', ping))
+		.setFooter(executedBy, message.author.displayAvatarURL('png', true))
 		.setColor(color)
-		return pingMsg.edit(embedPing);
+		pingMsg.edit(embedPing)
+		return
     },
 }

@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 const { colorRed, colorOrange, colorGreen } = require('@root/config.json')
-const { getLanguageCode } = require('@libraries/languages')
+const { getString } = require('@libraries/strings')
 
 module.exports = (client) => {
     client.on('message', async (message) => {
@@ -15,30 +15,28 @@ module.exports = (client) => {
         const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
         if(!command) return
 
-        const strings = require('@res/values-' + getLanguageCode(client, message) + '/strings.json')
-
         if(message.channel.type !== 'dm') {
             const bot = message.guild.members.cache.get(client.user.id)
             if(!bot.hasPermission('ADMINISTRATOR')) {
                 let reqPerms = []
                 const { requiredBotPerms = ['MANAGE_MESSAGES', 'ADD_REACTIONS', 'MANAGE_NICKNAMES'] } = command
                 requiredBotPerms.forEach(perm => {
-                    if(!bot.hasPermission(perm)) reqPerms.push(strings.global[perm])
+                    if(!bot.hasPermission(perm)) reqPerms.push(getString(message, 'global', 'permissions')[perm])
                 })
                 if(reqPerms) {
                     let title
                     let description
                     if(reqPerms.length === 1) {
-                        title = strings.event.message.requiredBotPerms.title.one
-                        description = strings.event.message.requiredBotPerms.description.one.replace('%%perm%%', reqPerms)
+                        title = getString(message, 'event', 'message.requiredBotPerms.title.one')
+                        description = getString(message, 'event', 'message.requiredBotPerms.description.one').replace('%%perm%%', reqPerms)
                     } else {
                         const last = reqPerms.splice(reqPerms.length - 1)
                         const permsNames = []
-                        permsNames.push(reqPerms.join(strings.global.comma))
+                        permsNames.push(reqPerms.join(getString(message, 'global', 'comma')))
                         permsNames.push(last)
-                        const string = permsNames.join(strings.global.and)
-                        title = strings.event.message.requiredBotPerms.title.many
-                        description = strings.event.message.requiredBotPerms.description.many.replace('%%perms%%', string)
+                        const string = permsNames.join(getString(message, 'global', 'and'))
+                        title = getString(message, 'event', 'message.requiredBotPerms.title.many')
+                        description = getString(message, 'event', 'message.requiredBotPerms.description.many').replace('%%perms%%', string)
                     }
                     const embed = new Discord.MessageEmbed()
                     .setTitle(title)
@@ -90,10 +88,18 @@ module.exports = (client) => {
         const maxArgs = command.maxArgs || null
         if((minArgs > args.length) || (maxArgs < args.length) && (maxArgs !== null)) {
             const embed = new Discord.MessageEmbed()
-            .setTitle(strings.event.message.argsLength.title)
-            .setDescription(strings.event.message.argsLength.description.replace('%%command%%', prefix + strings.command.help[command.name].usage))
+            .setTitle(getString(message, 'event', 'message.argsLength.title'))
+            .setDescription(getString(message, 'event', 'message.argsLength.description').replace('%%command%%', prefix + getString(message, 'help', '')[command.group][command.name].usage))
             .setColor(colorRed)
             message.channel.send(embed)
+            .then(m => {
+                if(m.channel.type !== 'dm' && (m.guild.members.cache.get(client.user.id).hasPermission('MANAGE_MESSAGES') || m.guild.members.cache.get(client.user.id).hasPermission('ADMINISTRATOR'))) {
+                    setTimeout(() => {
+                        if(!message.deleted) message.delete()
+                        if(!m.deleted) m.delete()
+                    }, 10000)
+                }
+            })
             return
         }
 
@@ -104,8 +110,8 @@ module.exports = (client) => {
             if(now < expirationTime) {
                 const timeLeft = (expirationTime - now) / 1000
                 const embed = new Discord.MessageEmbed()
-                .setTitle(strings.event.message.cooldown.title)
-                .setDescription(strings.event.message.cooldown.description.replace('%%time%%', timeLeft.toFixed(1)).replace('%%command%%', prefix + command.name))
+                .setTitle(getString(message, 'event', 'message.cooldown.title'))
+                .setDescription(getString(message, 'event', 'message.cooldown.description').replace('%%time%%', timeLeft.toFixed(1)).replace('%%command%%', prefix + command.name))
                 .setColor(colorRed)
                 message.channel.send(embed)
                 .then(m => {
@@ -126,15 +132,14 @@ module.exports = (client) => {
         }
 
         try {
-            await command.execute(message, strings, args, client)
+            await command.execute(message, getString, args, client)
         } catch (error) {
             message.channel.stopTyping(true)
             timestamps.set(message.author.id, now + 3000)
             let errorMessage
-            if(error.stack) errorMessage = strings.error.systemError
-            else errorMessage = strings.error.customError[error.name || error]
+            if(error.stack) errorMessage = getString(message, 'error', 'systemError')
+            else errorMessage = getString(message, 'error', 'customError')[error.name || error]
             const embed = new Discord.MessageEmbed()
-            .setAuthor(strings.error.moduleName)
             .setTitle(errorMessage)
             .setColor(colorRed)
             message.channel.send(embed)
@@ -146,22 +151,24 @@ module.exports = (client) => {
                     }, 10000)
                 }
             })
-            if(error.stack && process.env.TERM_PROGRAM !== 'vscode') {
-                const embed = new Discord.MessageEmbed()
-                .setAuthor('Error Found')
-                .setTitle(`Error found at ${command.name} command. Channel type: ${message.channel.type}. Executed by ${message.author.tag} (${message.author.id}).`)
-                .setDescription(`Message content: ${message.content}\n${error.stack}`)
-                .setColor(colorRed)
-                client.owner.send(embed)
-                console.error(`Error found at ${command.name} command. Channel type: ${message.channel.type}. Executed by ${message.author.tag} (${message.author.id}).\nMessage content: ${message.content}\n\nError:\n${error.stack}`)
-                if(errorsLogChannel = client.channels.cache.get('813678563822927913')) {
+            if(error.stack) {
+                console.error(`Error found at ${command.name} command. Channel type: ${message.channel.type}. Executed by ${message.author.tag} (${message.author.id}).\nMessage content: ${message.content}\n${error.stack}`)
+                if(process.env.TERM_PROGRAM !== 'vscode') {
                     const embed = new Discord.MessageEmbed()
                     .setAuthor('Error Found')
-                    .setTitle(errorMessage || error)
-                    .setDescription(`Error found at ${command.name} command. Channel type: ${message.channel.type}. Executed by ${message.author.tag} (${message.author.id}).\nMessage content: ${message.content}`)
+                    .setTitle(`Error found at ${command.name} command. Channel type: ${message.channel.type}. Executed by ${message.author.tag} (${message.author.id}).`)
+                    .setDescription(`Message content: ${message.content}\n${error.stack}`)
                     .setColor(colorRed)
-                    if(error.stack) embed.addField('Error:', error.stack)
-                    errosrLogChannel.send(embed)
+                    client.owner.send(embed)
+                    if(errorsLogChannel = client.channels.cache.get('813678563822927913')) {
+                        const embed = new Discord.MessageEmbed()
+                        .setAuthor('Error Found')
+                        .setTitle(errorMessage || error)
+                        .setDescription(`Error found at ${command.name} command. Channel type: ${message.channel.type}. Executed by ${message.author.tag} (${message.author.id}).\nMessage content: ${message.content}`)
+                        .setColor(colorRed)
+                        if(error.stack) embed.addField('Error:', error.stack)
+                        errosrLogChannel.send(embed)
+                    }
                 }
             }
         }

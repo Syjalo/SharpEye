@@ -1,4 +1,3 @@
-const Discord = require('discord.js')
 const { langsdb } = require('@root/config.json')
 const languagesSchema = require('@schemas/languages')
 
