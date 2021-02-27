@@ -1,0 +1,7 @@
+{
+    "systemError": "An error occurred while running the command\nI sent this error to the Developer. He'll fix it soon.",
+    "customError": {
+        "ApiError": "Something went wrong when connecting to the API!",
+        "UserNotFound": "That user was not found!"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "misc": {
+        "ping": {
+            "usage": "ping"
+        },
+        "try": {
+            "usage": "try <action>"
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "message": {
+        "requiredBotPerms": {
+            "title": {
+                "one": "The bot doesn't have some permission",
+                "many": "The bot doesn't have some permissions"
+            },
+            "description": {
+                "one": "Required permission: `%%perm%%`",
+                "many": "Required permissions: `%%perms%%`"
+            }
+        },
+        "argsLength": {
+            "title": "Incorrect syntax",
+            "description": "Please use `%%command%%`."
+        },
+        "cooldown": {
+            "title": "Cooldown exist",
+            "description": "Please wait %%time%% more second(s) before execute the `%%command%%` command again."
+        }
+    }
+}
