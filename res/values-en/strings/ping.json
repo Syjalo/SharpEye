@@ -1,5 +1,5 @@
 {
     "defining": "Defining%%loading%%",
     "title": "Pong!",
-    "description": "Ping is %%ping%%ms."
+    "description": "Bot ping is %%botPing%%ms.\nAPI ping is %%apiPing%%ms."
 }
