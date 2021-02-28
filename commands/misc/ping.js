@@ -6,18 +6,17 @@ module.exports = {
 	name: 'ping',
 	group: 'misc',
 	allowingInDm: true,
-    async execute(message, getString) {
+    async execute(message, getString, args, client) {
 		const executedBy = getString(message, 'global', 'executedBy').replace('%%member%%', message.author.tag)
 
-        let embedPing = new Discord.MessageEmbed()
+        const pingEmbed = new Discord.MessageEmbed()
         .setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '.'))
         .setColor(colorOrange)
-        const pingMsg = await message.channel.send(embedPing)
-        embedPing.setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '..'))
-        await pingMsg.edit(embedPing)
-        embedPing.setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '...'))
-        await pingMsg.edit(embedPing)
-		let ping = Math.ceil((pingMsg.editedTimestamp - message.createdTimestamp) / 3)
+		let ping
+        await message.channel.send(pingEmbed)
+		.then(m => m.edit(pingEmbed.setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '..'))))
+		.then(m => m.edit(pingEmbed.setTitle(getString(message, 'ping', 'defining').replace('%%loading%%', '...'))))
+		.then(m => { ping = Math.ceil((m.editedTimestamp - message.createdTimestamp) / 3); if(!m.deleted) m.delete() })
 		let color
 		if(ping < 0) {
 			color = colorOrange
@@ -28,12 +27,12 @@ module.exports = {
 		} else {
 			color = colorRed
         }
-		embedPing
+		const resultEmbed = new Discord.MessageEmbed()
 		.setTitle(getString(message, 'ping', 'title'))
-		.setDescription(getString(message, 'ping', 'description').replace('%%ping%%', ping))
+		.setDescription(getString(message, 'ping', 'description').replace('%%botPing%%', ping).replace('%%apiPing%%', client.ws.ping))
 		.setFooter(executedBy, message.author.displayAvatarURL('png', true))
 		.setColor(color)
-		pingMsg.edit(embedPing)
+		message.channel.send(resultEmbed)
 		return
     },
 }
